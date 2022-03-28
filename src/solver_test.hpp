@@ -67,7 +67,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   int dims[2] = {};
   MPI_Barrier(MPI_COMM_WORLD);
   MPI_Dims_create(mpi_numproc, ndims, dims);
-  std::cout << "dims=(" << dims[0] << ", " << dims[1] << ")" << std::endl;
+  std::cout << "dims=(" << dims[0] << ", " <  < dims[1] << ")" << std::endl;
   MPI_Comm topo_com;
   int bcs[2] = {0, 0};
   int reorder = 1;
@@ -177,13 +177,15 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   for (size_t j = 0; j != NY; ++j) {
     for (size_t i = 0; i != NX; ++i) {
       if (domainView.get(i, j) == Cell::DIR)
+        // particular soolution for each subdomain
         solutionView.set(i, j) = ParticularSolution(i * h, j * h);
     }
-  }
+  } 
   std::vector<double> solution2 = solution;
   std::cout << "solve LSE using stencil jacobi" << std::endl;
   auto start = std::chrono::high_resolution_clock::now();
   for (size_t iter = 0; iter <= iterations; ++iter) {
+      // exchange ghost layers between workers
     SolverJacobi(solution, solution2, rightHandSide, stencil, NX, NY);
   }
 
