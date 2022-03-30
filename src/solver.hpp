@@ -174,7 +174,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
 //  std::cout << "Init Done Processor Rank " << myrank << std::endl;
 
 	MPI_Barrier(GRID_COMM);
-//	std::cout << "coords: " << coords[0] << "," << coords[1] << " rank: " << myrank << " size: " << NX << "," << NY << std::endl;
+	std::cout << "coords: " << coords[0] << "," << coords[1] << " rank: " << myrank << " size: " << NX << "," << NY << std::endl;
 
 // each worker has its subdomain incl. ghost layers
 
@@ -293,6 +293,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   for (size_t iter = 0; iter <= iterations; ++iter) {
     SolverJacobi(solution, solution2, rightHandSide, stencil, NX, NY);
     
+   /* 
 
     for (size_t i = 1; i != NX-1; ++i) {
       UP_SEND[i] = solutionView.get(i, NY-1);
@@ -307,7 +308,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
       RIGHT_SEND[j] = solutionView.get(NX-1, j);
     };
 
-/*
+  */
 
     for (size_t j = 0; j != NY; ++j) {
       for (size_t i = 0; i != NX; ++i) {
@@ -322,7 +323,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
         };
       }
     }
-*/
+
    // if (dims[1] != 1) {
       MPI_Send(UP_SEND.data(), NX, MPI_DOUBLE, up_rank, 1, GRID_COMM);
       
@@ -334,27 +335,27 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
       };
 
       MPI_Send(DOWN_SEND.data(), NX, MPI_DOUBLE, down_rank, 2, GRID_COMM);
-//      if (coords[1]+1 != dims[1]) {
+      if (coords[1]+1 != dims[1]) {
         MPI_Recv(UP_RECV.data(), NX, MPI_DOUBLE, up_rank, 2, GRID_COMM, MPI_STATUS_IGNORE);
 //       for (size_t i = 1; i != NX-1; ++i) {
 //          solutionView.set(i, NY) = UP_RECV[i];
 //        };
-//     };
+      };
 
       MPI_Send(LEFT_SEND.data(), NY, MPI_DOUBLE, left_rank, 3, GRID_COMM);
-//      if (coords[0]+1 != dims[0]) {
+      if (coords[0]+1 != dims[0]) {
         MPI_Recv(RIGHT_RECV.data(), NY, MPI_DOUBLE, right_rank, 3, GRID_COMM, MPI_STATUS_IGNORE);
 //        for (size_t j = 1; j != NY-1; ++j) {
 //          solutionView.set(NX, j) = RIGHT_RECV[j];
 //        };
-//      };    
+      };    
       MPI_Send(RIGHT_SEND.data(), NY, MPI_DOUBLE, right_rank, 4, GRID_COMM);
-//      if (coords[0] != 0) {
+      if (coords[0] != 0) {
         MPI_Recv(LEFT_RECV.data(), NY, MPI_DOUBLE, left_rank, 4, GRID_COMM, MPI_STATUS_IGNORE);
  //       for (size_t j = 1; j != NY-1; ++j) {
  //         solutionView.set(0, j) = LEFT_RECV[j]; 
  //       };
- //     };
+      };
 
       
     for (size_t j = 0; j != NY; ++j) {
