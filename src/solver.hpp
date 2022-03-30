@@ -334,27 +334,27 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
       };
 
       MPI_Send(DOWN_SEND.data(), NX, MPI_DOUBLE, down_rank, 2, GRID_COMM);
-      if (coords[1]+1 != dims[1]) {
+//      if (coords[1]+1 != dims[1]) {
         MPI_Recv(UP_RECV.data(), NX, MPI_DOUBLE, up_rank, 2, GRID_COMM, MPI_STATUS_IGNORE);
 //       for (size_t i = 1; i != NX-1; ++i) {
 //          solutionView.set(i, NY) = UP_RECV[i];
 //        };
-      };
+//     };
 
       MPI_Send(LEFT_SEND.data(), NY, MPI_DOUBLE, left_rank, 3, GRID_COMM);
-      if (coords[0]+1 != dims[0]) {
+//      if (coords[0]+1 != dims[0]) {
         MPI_Recv(RIGHT_RECV.data(), NY, MPI_DOUBLE, right_rank, 3, GRID_COMM, MPI_STATUS_IGNORE);
 //        for (size_t j = 1; j != NY-1; ++j) {
 //          solutionView.set(NX, j) = RIGHT_RECV[j];
 //        };
-      };    
+//      };    
       MPI_Send(RIGHT_SEND.data(), NY, MPI_DOUBLE, right_rank, 4, GRID_COMM);
-      if (coords[0] != 0) {
+//      if (coords[0] != 0) {
         MPI_Recv(LEFT_RECV.data(), NY, MPI_DOUBLE, left_rank, 4, GRID_COMM, MPI_STATUS_IGNORE);
  //       for (size_t j = 1; j != NY-1; ++j) {
  //         solutionView.set(0, j) = LEFT_RECV[j]; 
  //       };
-      };
+ //     };
 
       
     for (size_t j = 0; j != NY; ++j) {
