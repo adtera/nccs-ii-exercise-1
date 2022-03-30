@@ -41,6 +41,15 @@ double NormL2(const std::vector<double> &v) {
   return sqrt(norm);
 }
 
+double SquareL2(const std::vector<double> &v) {
+  double norm = 0;
+  for (const auto &value : v) {
+    norm += value * value;
+  }
+  return norm;
+}
+
+
 double NormInf(const std::vector<double> &v) {
   double max = std::numeric_limits<double>::lowest();
   for (const auto &value : v) {
@@ -66,7 +75,6 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
 
 //  #ifdef USEMPI
 
-
   int myrank,numprocs;
   // double h = 1.0 / (NY - 1);
   double h = 1.0 / (resolution - 1);
@@ -75,11 +83,10 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   MPI_Comm_size(MPI_COMM_WORLD,&numprocs);
 
   // Build Cartesian Grid
-//  std::cout << "Init Processor Rank " << myrank << std::endl;
+  //  std::cout << "Init Processor Rank " << myrank << std::endl;
   int dims[2] = {0,0};
   if (ndims == 1) {
     dims[1] = 1;
-//    std::cout << "This is dims " << dims << std::endl;
   }
   MPI_Barrier(MPI_COMM_WORLD);
   MPI_Dims_create(numprocs, ndims, dims);
@@ -139,17 +146,19 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
 
   std::vector<int> domain(NX * NY, Cell::UNKNOWN);
   MatrixView<int> domainView(domain, NX, NY);
+  
   for (size_t i = 1; i != NX - 1; ++i) {
     domainView.set(i, 0) = Cell::DOWN;
     if (coords[1] + 1 == dims[1]) {
-      domainView.set(i,NY - 1) = Cell::DIR;
+      domainView.set(i, NY-1) = Cell::DIR;
     } else { 
-      domainView.set(i, NY - 1) = Cell::UP;
+      domainView.set(i, NY-1) = Cell::UP;
     };
   }
+
   for (size_t j = 1; j != NY - 1; ++j) {
     domainView.set(0, j) = Cell::LEFT;
-    domainView.set(NX - 1, j) = Cell::RIGHT;
+    domainView.set(NX-1, j) = Cell::RIGHT;
   }
 
 //  std::cout << "Init Done Processor Rank " << myrank << std::endl;
@@ -204,14 +213,14 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   };
 
   auto ComputeResidual = [](std::vector<double> &sol, std::vector<double> &rhs,
-                            const Stencil &stencil, size_t resolutionX, size_t resolutionY) {
-    MatrixView<double> solView(sol, resolutionX, resolutionY);
-    MatrixView<double> rhsView(rhs, resolutionX, resolutionY);
+                            const Stencil &stencil, size_t NX, size_t NY) {
+    MatrixView<double> solView(sol, NX, NY);
+    MatrixView<double> rhsView(rhs, NX, NY);
 
-    std::vector<double> residual(resolutionX * resolutionY, 0);
-    MatrixView<double> residualView(residual, resolutionX, resolutionY);
-    for (size_t j = 1; j != resolutionY - 1; ++j) {
-      for (size_t i = 1; i != resolutionX - 1; ++i) {
+    std::vector<double> residual(NX * NY, 0);
+    MatrixView<double> residualView(residual, NX, NY);
+    for (size_t j = 1; j != NY - 1; ++j) {
+      for (size_t i = 1; i != NX - 1; ++i) {
         residualView.set(i, j) =
             rhsView.get(i, j) -
             (solView.get(i, j) * stencil.C + solView.get(i + 1, j) * stencil.E +
@@ -327,31 +336,45 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   auto stop = std::chrono::high_resolution_clock::now();
   auto seconds = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
   auto residual = ComputeResidual(solution, rightHandSide, stencil, NX, NY);
-  auto residualNorm = NormL2(residual);
+  //auto residualNorm = NormL2(residual);
+  auto residualSquare = SquareL2(residual);
   auto residualMax = NormInf(residual);
   auto error = ComputeError(solution, referenceSolution, NX, NY);
-  auto errorNorm = NormL2(error);
+  //auto errorNorm = NormL2(error);
+  auto errorSquare = SquareL2(error);
   auto errorMax = NormInf(error);
 
   double seconds_sum;
-  double residualNorm_sum;
+//  double residualNorm_sum;
+  double residualSquare_sum;
+  double residual_sum;
   double residualMax_max;
-  double errorNorm_sum;
+//  double errorNorm_sum;
+  double errorSquare_sum;
   double errorMax_max;
 
+
   MPI_Reduce(&seconds, &seconds_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
-  MPI_Reduce(&residualNorm, &residualNorm_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
+//  MPI_Reduce(&residual, &residual_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
+//  MPI_Reduce(&residualNorm, &residualNorm_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
+  MPI_Reduce(&residualSquare, &residualSquare_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
   MPI_Reduce(&residualMax, &residualMax_max, 1, MPI_DOUBLE, MPI_MAX, 0, GRID_COMM);
-  MPI_Reduce(&errorNorm, &errorNorm_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
+  MPI_Reduce(&errorSquare, &errorSquare_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
+//  MPI_Reduce(&errorNorm, &errorNorm_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
   MPI_Reduce(&errorMax, &errorMax_max, 1, MPI_DOUBLE, MPI_MAX, 0, GRID_COMM);
 
+  double residualNorm2 = sqrt(residualSquare_sum);
+  double errorNorm2 = sqrt(errorSquare_sum);
+
   if (myrank == 0) {
-  std::cout << std::scientific << "|total runtime|= " << seconds << " seconds" << std::endl;
+  std::cout << std::scientific << "|total runtime|= " << seconds_sum << " seconds" << std::endl;
   std::cout << std::scientific << "|average runtime per process|= " << seconds/numprocs << " seconds per processor" << std::endl;
-  std::cout << std::scientific << "|residual|=" << residualNorm << std::endl;
-  std::cout << std::scientific << "|residualMax|=" << residualMax << std::endl;
-  std::cout << std::scientific << "|error|=" << errorNorm << std::endl;
-  std::cout << std::scientific << "|errorMax|=" << errorMax << std::endl;
+//  std::cout << std::scientific << "|residual|=" << residualNorm << std::endl;
+  std::cout << std::scientific << "|residual|=" << residualNorm2 << std::endl;
+  std::cout << std::scientific << "|residualMax|=" << residualMax_max << std::endl;
+//  std::cout << std::scientific << "|error|=" << errorNorm << std::endl;
+  std::cout << std::scientific << "|error|=" << errorNorm2 << std::endl;
+  std::cout << std::scientific << "|errorMax|=" << errorMax_max << std::endl;
   }
 //  #endif
 };
