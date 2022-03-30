@@ -20,7 +20,10 @@ int main(int argc, char *argv[]) {
 //#endif
 
   // parse command line arguments
-
+  if (rank==0){
+  std::cout << "|++++++++++++++++++++++++++++++++++++++++++++|" << std::endl;
+  std::cout << "Read CLI Values:" << std::endl;
+  };
   auto resolution = convertTo<int>(2, 32, argc, argv);
   auto iterations = convertTo<int>(3, 1000, argc, argv);
   std::string str_ndims = argv[1];
@@ -36,8 +39,15 @@ int main(int argc, char *argv[]) {
   assert(resolution > 0);
   assert(iterations > 0);
 
-  solve(resolution, iterations,rank,numproc, ndims);
+  if (rank==0){
+    std::cout << "Start Solver:" << std::endl;
+  };
 
+  solve(resolution, iterations,rank,numproc, ndims);
+  
+  if (rank==0){
+    std::cout << "|++++++++++++++++++++++++++++++++++++++++++++|" << std::endl;
+  };
 //#ifdef USEMPI
   MPI_Finalize();
 //#endif
