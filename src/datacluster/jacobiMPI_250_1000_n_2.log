@@ -1,0 +1,14 @@
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start Solver for [1000] iterations with resolution of [250]
+numprocs = 2
+dims=(2,1)
+coords=(0,0)
+coords: 1,0 rank: 1 size: 126,250
+coords: 0,0 rank: 0 size: 126,250
+|total runtime|= 7.707418e-02 seconds
+|average runtime per process|= 3.853709e-02 seconds per processor
+|residual|=6.101977e+05
+|residualMax|=1.417549e+04
+|error|=3.862076e+03
+|errorMax|=7.039834e+01
+|++++++++++++++++++++++++++++++++++++++++++++|

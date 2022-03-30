@@ -1,0 +1,32 @@
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start Solver for [1000] iterations with resolution of [4000]
+numprocs = 20
+dims=(20,1)
+coords=(0,0)
+coords: 1,0 rank: 1 size: 201,4000
+coords: 3,0 rank: 3 size: 201,4000
+coords: 5,0 rank: 5 size: 201,4000
+coords: 7,0 rank: 7 size: 201,4000
+coords: 9,0 rank: 9 size: 201,4000
+coords: 11,0 rank: 11 size: 201,4000
+coords: 13,0 rank: 13 size: 201,4000
+coords: 15,0 rank: 15 size: 201,4000
+coords: 17,0 rank: 17 size: 201,4000
+coords: 19,0 rank: 19 size: 219,4000
+coords: 14,0 rank: 14 size: 201,4000
+coords: 16,0 rank: 16 size: 201,4000
+coords: 18,0 rank: 18 size: 201,4000
+coords: 0,0 rank: 0 size: 201,4000
+coords: 2,0 rank: 2 size: 201,4000
+coords: 4,0 rank: 4 size: 201,4000
+coords: 6,0 rank: 6 size: 201,4000
+coords: 8,0 rank: 8 size: 201,4000
+coords: 10,0 rank: 10 size: 201,4000
+coords: 12,0 rank: 12 size: 201,4000
+|total runtime|= 4.127734e+00 seconds
+|average runtime per process|= 2.063867e-01 seconds per processor
+|residual|=5.442293e+07
+|residualMax|=1.272451e+06
+|error|=1.160755e+04
+|errorMax|=7.436404e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
