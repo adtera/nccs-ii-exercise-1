@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
   assert(iterations > 0);
 
   if (rank==0){
-    std::cout << "Start Solver for [" << iterations << "] iterations with resolution of [" << resolution << "]" << std::endl;
+    std::cout << "Start " << ndims << "-D Solver for [" << iterations << "] iterations with resolution of [" << resolution << "]" << std::endl;
   };
 
   solve(resolution, iterations,rank,numproc, ndims);

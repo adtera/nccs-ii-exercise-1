@@ -95,8 +95,6 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   MPI_Barrier(MPI_COMM_WORLD);
   MPI_Cart_coords(GRID_COMM, myrank, ndims, coords);
     
-
-
   int width_x, width_y, last_width_x, last_width_y;
   int modulo_x, modulo_y;
   size_t NY=0; 
@@ -114,14 +112,11 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   
   last_width_x = width_x + modulo_x;
   last_width_y = width_y + modulo_y;
-  
 
   if (myrank == 0) {
  	  std::cout << "numprocs = " << numprocs << std::endl;
     std::cout << "dims=(" << dims[0] << "," << dims[1] <<  ")" << std::endl;
-//    std::cout << "coords=(" << coords[0] << "," << coords[1] << ")" << std::endl;
   }
-  
 
   if (is_subdomain) {
     NX = width_x+2;
@@ -139,7 +134,6 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
     NX = last_width_x+2;
     NY = last_width_y+2;
   }
-
 
   std::vector<int> domain(NX * NY, Cell::UNKNOWN);
   MatrixView<int> domainView(domain, NX, NY);
@@ -186,7 +180,8 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   for (size_t j = 0; j != NY; ++j) {
     for (size_t i = 0; i != NX; ++i) {
       referenceSolutionView.set(i, j) =
-          ParticularSolution(((NX-2)*coords[0] + i) * h, ((NY-2)*coords[1] + j) * h);
+          ParticularSolution(((width_x)*coords[0] + i) * h, ((width_y)*coords[1] + j) * h);          
+//          ParticularSolution(((NX-2)*coords[0] + i) * h, ((NY-2)*coords[1] + j) * h);
     }
   }
 
@@ -196,11 +191,10 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   for (size_t j = 0; j != NY; ++j) {
     for (size_t i = 0; i != NX; ++i) {
       rightHandSideView.set(i, j) =
-          ParticularSolution(((NX-2)*coords[0] + i) * h, ((NY-2)*coords[1] + j) * h) * 4 * M_PI * M_PI;
+            ParticularSolution(((width_x)*coords[0] + i) * h, ((width_y)*coords[1] + j) * h);
+//          ParticularSolution(((NX-2)*coords[0] + i) * h, ((NY-2)*coords[1] + j) * h) * 4 * M_PI * M_PI;
     }
   }
-
-
 
   auto SolverJacobi = [](std::vector<double> &sol, std::vector<double> &sol2,
                          std::vector<double> &rhs, const Stencil &stencil,
@@ -265,12 +259,14 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   for (size_t j = 0; j != NY; ++j) {
     for (size_t i = 0; i != NX; ++i) {
       if (domainView.get(i, j) == Cell::DIR) {
-        solutionView.set(i, j) = ParticularSolution(((NX-2)*coords[0] + i) * h, ((NY-2)*coords[1] + j) * h);
+//        solutionView.set(i, j) = ParticularSolution(((NX-2)*coords[0] + i) * h, ((NY-2)*coords[1] + j) * h);
+        solutionView.set(i, j) = ParticularSolution(((width_x)*coords[0] + i) * h, ((width_y)*coords[1] + j) * h);
       }
     }
   };
 
-  std::vector <double> solution2 = solution;
+  std::vector <
+  double> solution2 = solution;
   std::vector <double> UP_SEND(NX, 0);
   std::vector <double> UP_RECV(NX, 0);
   std::vector <double> DOWN_SEND(NX, 0);
@@ -291,71 +287,37 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
 //  std::cout << "solve LSE using stencil jacobi" << std::endl;
   auto start = std::chrono::high_resolution_clock::now();
   for (size_t iter = 0; iter <= iterations; ++iter) {
+
     SolverJacobi(solution, solution2, rightHandSide, stencil, NX, NY);
-    
-   /* 
-
-    for (size_t i = 1; i != NX-1; ++i) {
-      UP_SEND[i] = solutionView.get(i, NY-1);
-    };
-    for (size_t i = 1; i != NX-1; ++i) {
-      DOWN_SEND[i] = solutionView.get(i, 1);
-    };
-    for (size_t j = 1; j != NY-1; ++j) {
-      LEFT_SEND[j] = solutionView.get(1, j);
-    };
-    for (size_t j = 1; j != NY-1; ++j) {
-      RIGHT_SEND[j] = solutionView.get(NX-1, j);
-    };
-
-  */
 
     for (size_t j = 0; j != NY; ++j) {
       for (size_t i = 0; i != NX; ++i) {
         if (domainView.get(i, j) == Cell::UP ){//&& dims[1] != 1) {
-          UP_SEND[i] = solutionView.get(i, j-1);
+          UP_SEND[i] = solutionView.get(i, j-1); //x
         } else if (domainView.get(i, j) == Cell::DOWN ){//&& dims[1] != 1){
-          DOWN_SEND[i] = solutionView.get(i, j+1);
+          DOWN_SEND[i] = solutionView.get(i, j+1); //x
         } else if (domainView.get(i, j) == Cell::LEFT) {
-          LEFT_SEND[j] = solutionView.get(i+1,j);
+          LEFT_SEND[j] = solutionView.get(i+1,j); 
         } else if (domainView.get(i, j) == Cell::RIGHT) {
           RIGHT_SEND[j] = solutionView.get(i-1,j);
-        };
+        };    
       }
     }
 
-   // if (dims[1] != 1) {
-      MPI_Send(UP_SEND.data(), NX, MPI_DOUBLE, up_rank, 1, GRID_COMM);
-      
-      if (coords[1] != 0) {
-      MPI_Recv(DOWN_RECV.data(), NX, MPI_DOUBLE, down_rank, 1, GRID_COMM, MPI_STATUS_IGNORE);
-//        for (size_t i = 1; i != NX-1; ++i) {
-//          solutionView.set(i, 0) = DOWN_RECV[i];
-//        };
-      };
-
-      MPI_Send(DOWN_SEND.data(), NX, MPI_DOUBLE, down_rank, 2, GRID_COMM);
-      if (coords[1]+1 != dims[1]) {
-        MPI_Recv(UP_RECV.data(), NX, MPI_DOUBLE, up_rank, 2, GRID_COMM, MPI_STATUS_IGNORE);
-//       for (size_t i = 1; i != NX-1; ++i) {
-//          solutionView.set(i, NY) = UP_RECV[i];
-//        };
-      };
-
-      MPI_Send(LEFT_SEND.data(), NY, MPI_DOUBLE, left_rank, 3, GRID_COMM);
-      if (coords[0]+1 != dims[0]) {
-        MPI_Recv(RIGHT_RECV.data(), NY, MPI_DOUBLE, right_rank, 3, GRID_COMM, MPI_STATUS_IGNORE);
-//        for (size_t j = 1; j != NY-1; ++j) {
-//          solutionView.set(NX, j) = RIGHT_RECV[j];
-//        };
-      };    
-      MPI_Send(RIGHT_SEND.data(), NY, MPI_DOUBLE, right_rank, 4, GRID_COMM);
-      if (coords[0] != 0) {
-        MPI_Recv(LEFT_RECV.data(), NY, MPI_DOUBLE, left_rank, 4, GRID_COMM, MPI_STATUS_IGNORE);
- //       for (size_t j = 1; j != NY-1; ++j) {
- //         solutionView.set(0, j) = LEFT_RECV[j]; 
- //       };
-      };
+    if (ndims != 1) {
+      MPI_Sendrecv(UP_SEND.data(), NX, MPI_DOUBLE, up_rank, 1,
+        DOWN_RECV.data(), NX, MPI_DOUBLE, down_rank, 1, GRID_COMM, MPI_STATUS_IGNORE);
+      MPI_Barrier(GRID_COMM);
+      MPI_Sendrecv(DOWN_SEND.data(), NX, MPI_DOUBLE, down_rank, 2,
+        UP_RECV.data(), NX, MPI_DOUBLE, up_rank, 2, GRID_COMM, MPI_STATUS_IGNORE);
+      MPI_Barrier(GRID_COMM);
+    };
+      MPI_Sendrecv(RIGHT_SEND.data(), NY, MPI_DOUBLE, right_rank, 3,
+        LEFT_RECV.data(), NY, MPI_DOUBLE, left_rank, 3, GRID_COMM, MPI_STATUS_IGNORE);
+      MPI_Barrier(GRID_COMM);
+      MPI_Sendrecv(LEFT_SEND.data(), NY, MPI_DOUBLE, left_rank, 4,
+        RIGHT_RECV.data(), NY, MPI_DOUBLE, right_rank, 4, GRID_COMM, MPI_STATUS_IGNORE);
+      MPI_Barrier(GRID_COMM);
 
       
     for (size_t j = 0; j != NY; ++j) {
@@ -371,51 +333,41 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
         };
       }
     } 
-    
-  }
+  };
+  MPI_Barrier(GRID_COMM);
 
 
 {
   auto stop = std::chrono::high_resolution_clock::now();
   auto seconds = std::chrono::duration_cast<std::chrono::duration<double>>(stop - start).count();
   auto residual = ComputeResidual(solution, rightHandSide, stencil, NX, NY);
-  //auto residualNorm = NormL2(residual);
   auto residualSquare = SquareL2(residual);
   auto residualMax = NormInf(residual);
   auto error = ComputeError(solution, referenceSolution, NX, NY);
-  //auto errorNorm = NormL2(error);
   auto errorSquare = SquareL2(error);
   auto errorMax = NormInf(error);
 
   double seconds_sum;
-//  double residualNorm_sum;
   double residualSquare_sum;
-//  double residual_sum;
   double residualMax_max;
-//  double errorNorm_sum;
   double errorSquare_sum;
   double errorMax_max;
 
 
   MPI_Reduce(&seconds, &seconds_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
-//  MPI_Reduce(&residual, &residual_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
-//  MPI_Reduce(&residualNorm, &residualNorm_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
   MPI_Reduce(&residualSquare, &residualSquare_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
   MPI_Reduce(&residualMax, &residualMax_max, 1, MPI_DOUBLE, MPI_MAX, 0, GRID_COMM);
   MPI_Reduce(&errorSquare, &errorSquare_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
-//  MPI_Reduce(&errorNorm, &errorNorm_sum, 1, MPI_DOUBLE, MPI_SUM, 0, GRID_COMM);
   MPI_Reduce(&errorMax, &errorMax_max, 1, MPI_DOUBLE, MPI_MAX, 0, GRID_COMM);
 
-  double residualNorm2 = sqrt(residualSquare_sum);
+  double residualNorm = sqrt(residualSquare_sum);
   double errorNorm2 = sqrt(errorSquare_sum);
 
   if (myrank == 0) {
   std::cout << std::scientific << "|total runtime|= " << seconds_sum << " seconds" << std::endl;
   std::cout << std::scientific << "|average runtime per process|= " << seconds/numprocs << " seconds per processor" << std::endl;
-//  std::cout << std::scientific << "|residual|=" << residualNorm << std::endl;
-  std::cout << std::scientific << "|residual|=" << residualNorm2 << std::endl;
+  std::cout << std::scientific << "|residual|=" << residualNorm << std::endl;
   std::cout << std::scientific << "|residualMax|=" << residualMax_max << std::endl;
-//  std::cout << std::scientific << "|error|=" << errorNorm << std::endl;
   std::cout << std::scientific << "|error|=" << errorNorm2 << std::endl;
   std::cout << std::scientific << "|errorMax|=" << errorMax_max << std::endl;
   }
