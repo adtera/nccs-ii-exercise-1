@@ -20,9 +20,9 @@ int main(int argc, char *argv[]) {
 //#endif
 
   // parse command line arguments
+
   if (rank==0){
   std::cout << "|++++++++++++++++++++++++++++++++++++++++++++|" << std::endl;
-  std::cout << "Read CLI Values:" << std::endl;
   };
   auto resolution = convertTo<int>(2, 32, argc, argv);
   auto iterations = convertTo<int>(3, 1000, argc, argv);
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
   assert(iterations > 0);
 
   if (rank==0){
-    std::cout << "Start Solver:" << std::endl;
+    std::cout << "Start Solver for [" << iterations << "] iterations with resolution of [" << resolution << "]" << std::endl;
   };
 
   solve(resolution, iterations,rank,numproc, ndims);

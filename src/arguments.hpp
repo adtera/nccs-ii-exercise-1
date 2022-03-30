@@ -18,10 +18,10 @@ T convertTo(const int position, const T init, int argc, char *argv[]) {
   }
   T arg;
   std::istringstream tmp(argv[position]);
-  tmp >> arg ? (std::cout << "Conversion of argument " << position
+  tmp >> arg /*? (std::cout << "Conversion of argument " << position
                              << " to 'int' successfull: " << arg)
                 : (std::cout << "Conversion of argument " << position
                              << " to 'int' failed");
-  std::cout << std::endl;
+  std::cout << std::endl */;
   return arg;
 }
