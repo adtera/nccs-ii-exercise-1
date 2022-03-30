@@ -49,7 +49,7 @@ int main(int argc, char **argv)
 
 
 
-    if (myrank == 0) {
+/*    if (myrank == 0) {
 
     	  // domain cell types
   		std::vector<int> domain(NX * NY, Cell::UNKNOWN);
@@ -104,7 +104,7 @@ int main(int argc, char **argv)
   }
 
 
-
+*/
 
 
 

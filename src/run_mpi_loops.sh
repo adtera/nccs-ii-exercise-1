@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH -J jacobiMPI
-#SBATCH -N 2
+#SBATCH -N 1
+#SBATCH --partition=nssc
 #SBATCH --ntasks-per-node=40
 #SBATCH --cpus-per-task=1
 #SBATCH --exclusive 
@@ -18,14 +19,14 @@ else  # if on local machine
     mkdir -p $folder    
     mpiprocs=( 1 2 )
 fi
-
-iterations=10
-resolutions=( 125 250 )
+ndims="1D"
+iterations=1000
+resolutions=( 125 250 1000 4000)
 
 for resolution in "${resolutions[@]}"
 do  
     for procs in "${mpiprocs[@]}"
     do  
-        mpirun -n $procs ./jacobiMPI $resolution $iterations |& tee "./${folder}/jacobiMPI_${resolution}_${iterations}_n_${procs}.log"
+        mpirun -n $procs ./jacobiMPI $ndims $resolution $iterations |& tee "./${folder}/jacobiMPI_${resolution}_${iterations}_n_${procs}.log"
     done
 done
