@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
   std::string str_ndims = argv[1];
   
   if (str_ndims == "2D") {
-    ndims = 1;
+    ndims = 2;
   };
   
   // std::cout << "numproc=" << numproc << std::endl;

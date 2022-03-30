@@ -71,12 +71,9 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
            int mpi_numproc, int ndims) {
 
 // Solver Template stops here, MPI subdomain solve starts 
-
-
 //  #ifdef USEMPI
 
   int myrank,numprocs;
-  // double h = 1.0 / (NY - 1);
   double h = 1.0 / (resolution - 1);
   
   MPI_Comm_rank(MPI_COMM_WORLD,&myrank);
@@ -122,7 +119,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   if (myrank == 0) {
  	  std::cout << "numprocs = " << numprocs << std::endl;
     std::cout << "dims=(" << dims[0] << "," << dims[1] <<  ")" << std::endl;
-    std::cout << "coords=(" << coords[0] << "," << coords[1] << ")" << std::endl;
+//    std::cout << "coords=(" << coords[0] << "," << coords[1] << ")" << std::endl;
   }
   
 
@@ -148,7 +145,12 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   MatrixView<int> domainView(domain, NX, NY);
   
   for (size_t i = 1; i != NX - 1; ++i) {
-    domainView.set(i, 0) = Cell::DOWN;
+    if (coords[1] == 0 ) {
+      domainView.set(i, 0) = Cell::DIR;
+    } else {
+      domainView.set(i, 0) = Cell::DOWN;
+    };
+
     if (coords[1] + 1 == dims[1]) {
       domainView.set(i, NY-1) = Cell::DIR;
     } else { 
@@ -157,8 +159,16 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   }
 
   for (size_t j = 1; j != NY - 1; ++j) {
-    domainView.set(0, j) = Cell::LEFT;
-    domainView.set(NX-1, j) = Cell::RIGHT;
+    if (coords[0] == 0) {
+      domainView.set(0, j) = Cell::DIR;
+    } else {
+      domainView.set(0, j) = Cell::LEFT;
+    };
+    if (coords[0] + 1 == dims[0]) {
+      domainView.set(NX-1, j) = Cell::DIR;
+    } else {
+      domainView.set(NX-1, j) = Cell::RIGHT;
+    }
   }
 
 //  std::cout << "Init Done Processor Rank " << myrank << std::endl;
@@ -175,10 +185,10 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   MatrixView<double> referenceSolutionView(referenceSolution, NX, NY);
   for (size_t j = 0; j != NY; ++j) {
     for (size_t i = 0; i != NX; ++i) {
-      referenceSolutionView.set(i, j) = ParticularSolution(((NX-2)*coords[0] + i) * h, ((NY-2)*coords[1] + j) * h);
+      referenceSolutionView.set(i, j) =
+          ParticularSolution(((NX-2)*coords[0] + i) * h, ((NY-2)*coords[1] + j) * h);
     }
   }
-
 
   // right hand side for subdomain
   std::vector<double> rightHandSide(NX * NY, 0);
@@ -186,7 +196,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   for (size_t j = 0; j != NY; ++j) {
     for (size_t i = 0; i != NX; ++i) {
       rightHandSideView.set(i, j) =
-          ParticularSolution(((NX-2)*coords[0] + i) * h,((NY-2)*coords[1] + j) * h) * 4 * M_PI * M_PI;
+          ParticularSolution(((NX-2)*coords[0] + i) * h, ((NY-2)*coords[1] + j) * h) * 4 * M_PI * M_PI;
     }
   }
 
@@ -245,10 +255,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
       }
     }
     return error;
-  
   };
-
-
 
   // solution approximation starting with boundary initialized to dirichlet
   // conditions, else 0
@@ -265,12 +272,12 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
 
   std::vector <double> solution2 = solution;
   std::vector <double> UP_SEND(NX, 0);
-  std::vector <double> DOWN_SEND(NX, 0);
-  std::vector <double> LEFT_SEND(NY, 0);
-  std::vector <double> RIGHT_SEND(NY, 0);
   std::vector <double> UP_RECV(NX, 0);
+  std::vector <double> DOWN_SEND(NX, 0);
   std::vector <double> DOWN_RECV(NX, 0);
+  std::vector <double> LEFT_SEND(NY, 0);
   std::vector <double> LEFT_RECV(NY, 0);
+  std::vector <double> RIGHT_SEND(NY, 0);
   std::vector <double> RIGHT_RECV(NY, 0);
 
   int up_rank;
@@ -279,20 +286,35 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   int right_rank;
 
   MPI_Cart_shift(GRID_COMM, 0, 1, &left_rank, &right_rank);
-
   MPI_Cart_shift(GRID_COMM, 1, 1, &down_rank, &up_rank);
-
 
 //  std::cout << "solve LSE using stencil jacobi" << std::endl;
   auto start = std::chrono::high_resolution_clock::now();
   for (size_t iter = 0; iter <= iterations; ++iter) {
     SolverJacobi(solution, solution2, rightHandSide, stencil, NX, NY);
     
+   /* 
+
+    for (size_t i = 1; i != NX-1; ++i) {
+      UP_SEND[i] = solutionView.get(i, NY-1);
+    };
+    for (size_t i = 1; i != NX-1; ++i) {
+      DOWN_SEND[i] = solutionView.get(i, 1);
+    };
+    for (size_t j = 1; j != NY-1; ++j) {
+      LEFT_SEND[j] = solutionView.get(1, j);
+    };
+    for (size_t j = 1; j != NY-1; ++j) {
+      RIGHT_SEND[j] = solutionView.get(NX-1, j);
+    };
+
+  */
+
     for (size_t j = 0; j != NY; ++j) {
       for (size_t i = 0; i != NX; ++i) {
-        if (domainView.get(i, j) == Cell::UP && dims[1] != 1) {
+        if (domainView.get(i, j) == Cell::UP ){//&& dims[1] != 1) {
           UP_SEND[i] = solutionView.get(i, j-1);
-        } else if (domainView.get(i, j) == Cell::DOWN && dims[1] != 1){
+        } else if (domainView.get(i, j) == Cell::DOWN ){//&& dims[1] != 1){
           DOWN_SEND[i] = solutionView.get(i, j+1);
         } else if (domainView.get(i, j) == Cell::LEFT) {
           LEFT_SEND[j] = solutionView.get(i+1,j);
@@ -302,25 +324,45 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
       }
     }
 
-    if (dims[1] != 1) {
+   // if (dims[1] != 1) {
       MPI_Send(UP_SEND.data(), NX, MPI_DOUBLE, up_rank, 1, GRID_COMM);
+      
+      if (coords[1] != 0) {
       MPI_Recv(DOWN_RECV.data(), NX, MPI_DOUBLE, down_rank, 1, GRID_COMM, MPI_STATUS_IGNORE);
-    
+//        for (size_t i = 1; i != NX-1; ++i) {
+//          solutionView.set(i, 0) = DOWN_RECV[i];
+//        };
+      };
+
       MPI_Send(DOWN_SEND.data(), NX, MPI_DOUBLE, down_rank, 2, GRID_COMM);
-      MPI_Recv(UP_RECV.data(), NX, MPI_DOUBLE, up_rank, 2, GRID_COMM, MPI_STATUS_IGNORE);
-    };
-    MPI_Send(LEFT_SEND.data(), NY, MPI_DOUBLE, left_rank, 3, GRID_COMM);
-    MPI_Recv(RIGHT_RECV.data(), NY, MPI_DOUBLE, right_rank, 3, GRID_COMM, MPI_STATUS_IGNORE);
-    
-    MPI_Send(RIGHT_SEND.data(), NY, MPI_DOUBLE, right_rank, 4, GRID_COMM);
-    MPI_Recv(LEFT_RECV.data(), NY, MPI_DOUBLE, left_rank, 4, GRID_COMM, MPI_STATUS_IGNORE);
+      if (coords[1]+1 != dims[1]) {
+        MPI_Recv(UP_RECV.data(), NX, MPI_DOUBLE, up_rank, 2, GRID_COMM, MPI_STATUS_IGNORE);
+//       for (size_t i = 1; i != NX-1; ++i) {
+//          solutionView.set(i, NY) = UP_RECV[i];
+//        };
+      };
 
+      MPI_Send(LEFT_SEND.data(), NY, MPI_DOUBLE, left_rank, 3, GRID_COMM);
+      if (coords[0]+1 != dims[0]) {
+        MPI_Recv(RIGHT_RECV.data(), NY, MPI_DOUBLE, right_rank, 3, GRID_COMM, MPI_STATUS_IGNORE);
+//        for (size_t j = 1; j != NY-1; ++j) {
+//          solutionView.set(NX, j) = RIGHT_RECV[j];
+//        };
+      };    
+      MPI_Send(RIGHT_SEND.data(), NY, MPI_DOUBLE, right_rank, 4, GRID_COMM);
+      if (coords[0] != 0) {
+        MPI_Recv(LEFT_RECV.data(), NY, MPI_DOUBLE, left_rank, 4, GRID_COMM, MPI_STATUS_IGNORE);
+ //       for (size_t j = 1; j != NY-1; ++j) {
+ //         solutionView.set(0, j) = LEFT_RECV[j]; 
+ //       };
+      };
 
+      
     for (size_t j = 0; j != NY; ++j) {
       for (size_t i = 0; i != NX; ++i) {
-        if (domainView.get(i, j) == Cell::UP && dims[1] != 1){
+        if (domainView.get(i, j) == Cell::UP ){//&& dims[1] != 1){
           solutionView.set(i, j) = UP_RECV[i];
-        } else if (domainView.get(i, j) == Cell::DOWN && dims[1] != 1){
+        } else if (domainView.get(i, j) == Cell::DOWN ){//&& dims[1] != 1){
           solutionView.set(i, j) = DOWN_RECV[i];
         } else if (domainView.get(i,j) == Cell::LEFT) {
           solutionView.set(i,j) = LEFT_RECV[j];
@@ -328,7 +370,8 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
           solutionView.set(i,j) = RIGHT_RECV[j];
         };
       }
-    }
+    } 
+    
   }
 
 
@@ -347,7 +390,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
   double seconds_sum;
 //  double residualNorm_sum;
   double residualSquare_sum;
-  double residual_sum;
+//  double residual_sum;
   double residualMax_max;
 //  double errorNorm_sum;
   double errorSquare_sum;
