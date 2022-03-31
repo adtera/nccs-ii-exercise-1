@@ -168,7 +168,7 @@ void solve(size_t resolution, size_t iterations, int mpi_rank,
 //  std::cout << "Init Done Processor Rank " << myrank << std::endl;
 
 	MPI_Barrier(GRID_COMM);
-	std::cout << "coords: " << coords[0] << "," << coords[1] << " rank: " << myrank << " size: " << NX << "," << NY << std::endl;
+//	std::cout << "coords: " << coords[0] << "," << coords[1] << " rank: " << myrank << " size: " << NX << "," << NY << std::endl;
 
 // each worker has its subdomain incl. ghost layers
 
