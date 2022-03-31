@@ -1,52 +1,11 @@
 |++++++++++++++++++++++++++++++++++++++++++++|
-Start Solver for [1000] iterations with resolution of [4000]
+Start 1-D Solver for [1000] iterations with resolution of [4000]
 numprocs = 40
 dims=(40,1)
-coords=(0,0)
-coords: 9,0 rank: 9 size: 101,4000
-coords: 10,0 rank: 10 size: 101,4000
-coords: 11,0 rank: 11 size: 101,4000
-coords: 12,0 rank: 12 size: 101,4000
-coords: 13,0 rank: 13 size: 101,4000
-coords: 14,0 rank: 14 size: 101,4000
-coords: 15,0 rank: 15 size: 101,4000
-coords: 16,0 rank: 16 size: 101,4000
-coords: 17,0 rank: 17 size: 101,4000
-coords: 18,0 rank: 18 size: 101,4000
-coords: 19,0 rank: 19 size: 101,4000
-coords: 20,0 rank: 20 size: 101,4000
-coords: 21,0 rank: 21 size: 101,4000
-coords: 22,0 rank: 22 size: 101,4000
-coords: 23,0 rank: 23 size: 101,4000
-coords: 24,0 rank: 24 size: 101,4000
-coords: 25,0 rank: 25 size: 101,4000
-coords: 26,0 rank: 26 size: 101,4000
-coords: 27,0 rank: 27 size: 101,4000
-coords: 28,0 rank: 28 size: 101,4000
-coords: 29,0 rank: 29 size: 101,4000
-coords: 30,0 rank: 30 size: 101,4000
-coords: 31,0 rank: 31 size: 101,4000
-coords: 32,0 rank: 32 size: 101,4000
-coords: 33,0 rank: 33 size: 101,4000
-coords: 34,0 rank: 34 size: 101,4000
-coords: 35,0 rank: 35 size: 101,4000
-coords: 36,0 rank: 36 size: 101,4000
-coords: 37,0 rank: 37 size: 101,4000
-coords: 38,0 rank: 38 size: 101,4000
-coords: 39,0 rank: 39 size: 139,4000
-coords: 0,0 rank: 0 size: 101,4000
-coords: 4,0 rank: 4 size: 101,4000
-coords: 5,0 rank: 5 size: 101,4000
-coords: 6,0 rank: 6 size: 101,4000
-coords: 7,0 rank: 7 size: 101,4000
-coords: 8,0 rank: 8 size: 101,4000
-coords: 1,0 rank: 1 size: 101,4000
-coords: 2,0 rank: 2 size: 101,4000
-coords: 3,0 rank: 3 size: 101,4000
-|total runtime|= 3.551862e+00 seconds
-|average runtime per process|= 8.879655e-02 seconds per processor
-|residual|=1.931103e+07
-|residualMax|=6.408699e+05
-|error|=4.118738e+03
-|errorMax|=3.745344e+01
+|total runtime|= 1.797371e+02 seconds
+|average runtime per process|= 1.123562e-01 seconds per processor
+|residual|=9.592535e+08
+|residualMax|=4.130151e+06
+|error|=2.051889e+05
+|errorMax|=2.419050e+02
 |++++++++++++++++++++++++++++++++++++++++++++|

@@ -1,13 +1,11 @@
 |++++++++++++++++++++++++++++++++++++++++++++|
-Start Solver for [1000] iterations with resolution of [250]
+Start 1-D Solver for [1000] iterations with resolution of [250]
 numprocs = 1
 dims=(1,1)
-coords=(0,0)
-coords: 0,0 rank: 0 size: 250,250
-|total runtime|= 1.558317e-01 seconds
-|average runtime per process|= 1.558317e-01 seconds per processor
-|residual|=8.629499e+05
-|residualMax|=1.417549e+04
-|error|=5.461801e+03
-|errorMax|=7.039834e+01
+|total runtime|= 2.048453e-01 seconds
+|average runtime per process|= 2.048453e-01 seconds per processor
+|residual|=6.800220e+05
+|residualMax|=1.171728e+04
+|error|=6.635753e+03
+|errorMax|=8.564551e+01
 |++++++++++++++++++++++++++++++++++++++++++++|

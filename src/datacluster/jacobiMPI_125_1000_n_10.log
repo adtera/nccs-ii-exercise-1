@@ -1,22 +1,11 @@
 |++++++++++++++++++++++++++++++++++++++++++++|
-Start Solver for [1000] iterations with resolution of [125]
+Start 1-D Solver for [1000] iterations with resolution of [125]
 numprocs = 10
 dims=(10,1)
-coords=(0,0)
-coords: 9,0 rank: 9 size: 17,125
-coords: 0,0 rank: 0 size: 14,125
-coords: 1,0 rank: 1 size: 14,125
-coords: 2,0 rank: 2 size: 14,125
-coords: 3,0 rank: 3 size: 14,125
-coords: 4,0 rank: 4 size: 14,125
-coords: 5,0 rank: 5 size: 14,125
-coords: 6,0 rank: 6 size: 14,125
-coords: 7,0 rank: 7 size: 14,125
-coords: 8,0 rank: 8 size: 14,125
-|total runtime|= 1.161142e-02 seconds
-|average runtime per process|= 1.161142e-03 seconds per processor
-|residual|=1.098202e+04
-|residualMax|=9.260054e+02
-|error|=1.023914e+02
-|errorMax|=7.798600e+00
+|total runtime|= 1.828409e-01 seconds
+|average runtime per process|= 1.899353e-03 seconds per processor
+|residual|=4.557826e+04
+|residualMax|=1.112254e+03
+|error|=1.838301e+03
+|errorMax|=4.089592e+01
 |++++++++++++++++++++++++++++++++++++++++++++|

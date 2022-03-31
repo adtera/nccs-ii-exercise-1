@@ -1,52 +1,11 @@
 |++++++++++++++++++++++++++++++++++++++++++++|
-Start Solver for [1000] iterations with resolution of [125]
+Start 1-D Solver for [1000] iterations with resolution of [125]
 numprocs = 40
 dims=(40,1)
-coords=(0,0)
-coords: 34,0 rank: 34 size: 5,125
-coords: 35,0 rank: 35 size: 5,125
-coords: 36,0 rank: 36 size: 5,125
-coords: 37,0 rank: 37 size: 5,125
-coords: 38,0 rank: 38 size: 5,125
-coords: 39,0 rank: 39 size: 8,125
-coords: 0,0 rank: 0 size: 5,125
-coords: 4,0 rank: 4 size: 5,125
-coords: 5,0 rank: 5 size: 5,125
-coords: 6,0 rank: 6 size: 5,125
-coords: 7,0 rank: 7 size: 5,125
-coords: 8,0 rank: 8 size: 5,125
-coords: 9,0 rank: 9 size: 5,125
-coords: 10,0 rank: 10 size: 5,125
-coords: 11,0 rank: 11 size: 5,125
-coords: 12,0 rank: 12 size: 5,125
-coords: 13,0 rank: 13 size: 5,125
-coords: 14,0 rank: 14 size: 5,125
-coords: 15,0 rank: 15 size: 5,125
-coords: 16,0 rank: 16 size: 5,125
-coords: 17,0 rank: 17 size: 5,125
-coords: 18,0 rank: 18 size: 5,125
-coords: 19,0 rank: 19 size: 5,125
-coords: 20,0 rank: 20 size: 5,125
-coords: 21,0 rank: 21 size: 5,125
-coords: 22,0 rank: 22 size: 5,125
-coords: 23,0 rank: 23 size: 5,125
-coords: 24,0 rank: 24 size: 5,125
-coords: 25,0 rank: 25 size: 5,125
-coords: 26,0 rank: 26 size: 5,125
-coords: 27,0 rank: 27 size: 5,125
-coords: 28,0 rank: 28 size: 5,125
-coords: 29,0 rank: 29 size: 5,125
-coords: 30,0 rank: 30 size: 5,125
-coords: 31,0 rank: 31 size: 5,125
-coords: 32,0 rank: 32 size: 5,125
-coords: 33,0 rank: 33 size: 5,125
-coords: 1,0 rank: 1 size: 5,125
-coords: 2,0 rank: 2 size: 5,125
-coords: 3,0 rank: 3 size: 5,125
-|total runtime|= 1.087368e-02 seconds
-|average runtime per process|= 2.718419e-04 seconds per processor
-|residual|=1.672513e+03
-|residualMax|=2.454520e+02
-|error|=1.559417e+01
-|errorMax|=2.067210e+00
+|total runtime|= 9.503837e-01 seconds
+|average runtime per process|= 5.953420e-04 seconds per processor
+|residual|=4.557826e+04
+|residualMax|=1.112254e+03
+|error|=1.838301e+03
+|errorMax|=4.089592e+01
 |++++++++++++++++++++++++++++++++++++++++++++|

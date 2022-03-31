@@ -1,0 +1,577 @@
+/usr/bin/sinfo
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [125]
+numprocs = 1
+dims=(1,1)
+coords: 0,0 rank: 0 size: 125,125
+|total runtime|= 3.688939e-02 seconds
+|average runtime per process|= 3.688939e-02 seconds per processor
+|residual|=4.557826e+04
+|residualMax|=1.112254e+03
+|error|=1.838301e+03
+|errorMax|=4.089592e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [125]
+numprocs = 2
+dims=(2,1)
+coords: 0,0 rank: 0 size: 63,125
+coords: 1,0 rank: 1 size: 64,125
+|total runtime|= 4.718275e-02 seconds
+|average runtime per process|= 1.180535e-02 seconds per processor
+|residual|=4.557826e+04
+|residualMax|=1.112254e+03
+|error|=1.838301e+03
+|errorMax|=4.089592e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [125]
+coords: 1,0 rank: 1 size: 26,125
+coords: 2,0 rank: 2 size: 26,125
+coords: 3,0 rank: 3 size: 26,125
+coords: 4,0 rank: 4 size: 29,125
+numprocs = 5
+dims=(5,1)
+coords: 0,0 rank: 0 size: 26,125
+|total runtime|= 8.375171e-02 seconds
+|average runtime per process|= 3.357429e-03 seconds per processor
+|residual|=4.557826e+04
+|residualMax|=1.112254e+03
+|error|=1.838301e+03
+|errorMax|=4.089592e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [125]
+numprocs = 10
+dims=(10,1)
+coords: 2,0 rank: 2 size: 14,125
+coords: 3,0 rank: 3 size: 14,125
+coords: 4,0 rank: 4 size: 14,125
+coords: 5,0 rank: 5 size: 14,125
+coords: 6,0 rank: 6 size: 14,125
+coords: 7,0 rank: 7 size: 14,125
+coords: 8,0 rank: 8 size: 14,125
+coords: 9,0 rank: 9 size: 17,125
+coords: 0,0 rank: 0 size: 14,125
+coords: 1,0 rank: 1 size: 14,125
+|total runtime|= 1.747990e-01 seconds
+|average runtime per process|= 1.749979e-03 seconds per processor
+|residual|=4.557826e+04
+|residualMax|=1.112254e+03
+|error|=1.838301e+03
+|errorMax|=4.089592e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [125]
+numprocs = 20
+dims=(20,1)
+coords: 13,0 rank: 13 size: 8,125
+coords: 14,0 rank: 14 size: 8,125
+coords: 15,0 rank: 15 size: 8,125
+coords: 16,0 rank: 16 size: 8,125
+coords: 17,0 rank: 17 size: 8,125
+coords: 18,0 rank: 18 size: 8,125
+coords: 19,0 rank: 19 size: 11,125
+coords: 0,0 rank: 0 size: 8,125
+coords: 1,0 rank: 1 size: 8,125
+coords: 2,0 rank: 2 size: 8,125
+coords: 3,0 rank: 3 size: 8,125
+coords: 4,0 rank: 4 size: 8,125
+coords: 5,0 rank: 5 size: 8,125
+coords: 6,0 rank: 6 size: 8,125
+coords: 7,0 rank: 7 size: 8,125
+coords: 8,0 rank: 8 size: 8,125
+coords: 9,0 rank: 9 size: 8,125
+coords: 10,0 rank: 10 size: 8,125
+coords: 11,0 rank: 11 size: 8,125
+coords: 12,0 rank: 12 size: 8,125
+|total runtime|= 4.326320e-01 seconds
+|average runtime per process|= 1.082760e-03 seconds per processor
+|residual|=4.557826e+04
+|residualMax|=1.112254e+03
+|error|=1.838301e+03
+|errorMax|=4.089592e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [125]
+numprocs = 40
+dims=(40,1)
+coords: 28,0 rank: 28 size: 5,125
+coords: 29,0 rank: 29 size: 5,125
+coords: 30,0 rank: 30 size: 5,125
+coords: 32,0 rank: 32 size: 5,125
+coords: 33,0 rank: 33 size: 5,125
+coords: 34,0 rank: 34 size: 5,125
+coords: 36,0 rank: 36 size: 5,125
+coords: 37,0 rank: 37 size: 5,125
+coords: 38,0 rank: 38 size: 5,125
+coords: 0,0 rank: 0 size: 5,125
+coords: 9,0 rank: 9 size: 5,125
+coords: 10,0 rank: 10 size: 5,125
+coords: 12,0 rank: 12 size: 5,125
+coords: 13,0 rank: 13 size: 5,125
+coords: 14,0 rank: 14 size: 5,125
+coords: 16,0 rank: 16 size: 5,125
+coords: 17,0 rank: 17 size: 5,125
+coords: 18,0 rank: 18 size: 5,125
+coords: 20,0 rank: 20 size: 5,125
+coords: 21,0 rank: 21 size: 5,125
+coords: 22,0 rank: 22 size: 5,125
+coords: 24,0 rank: 24 size: 5,125
+coords: 25,0 rank: 25 size: 5,125
+coords: 26,0 rank: 26 size: 5,125
+coords: 1,0 rank: 1 size: 5,125
+coords: 2,0 rank: 2 size: 5,125
+coords: 4,0 rank: 4 size: 5,125
+coords: 5,0 rank: 5 size: 5,125
+coords: 6,0 rank: 6 size: 5,125
+coords: 8,0 rank: 8 size: 5,125
+coords: 19,0 rank: 19 size: 5,125
+coords: 23,0 rank: 23 size: 5,125
+coords: 27,0 rank: 27 size: 5,125
+coords: 31,0 rank: 31 size: 5,125
+coords: 35,0 rank: 35 size: 5,125
+coords: 39,0 rank: 39 size: 8,125
+coords: 3,0 rank: 3 size: 5,125
+coords: 7,0 rank: 7 size: 5,125
+coords: 11,0 rank: 11 size: 5,125
+coords: 15,0 rank: 15 size: 5,125
+|total runtime|= 9.561014e-01 seconds
+|average runtime per process|= 6.052704e-04 seconds per processor
+|residual|=4.557826e+04
+|residualMax|=1.112254e+03
+|error|=1.838301e+03
+|errorMax|=4.089592e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [250]
+numprocs = 1
+dims=(1,1)
+coords: 0,0 rank: 0 size: 250,250
+|total runtime|= 1.661334e-01 seconds
+|average runtime per process|= 1.661334e-01 seconds per processor
+|residual|=6.800220e+05
+|residualMax|=1.171728e+04
+|error|=6.635753e+03
+|errorMax|=8.564551e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [250]
+numprocs = 2
+dims=(2,1)
+coords: 1,0 rank: 1 size: 126,250
+coords: 0,0 rank: 0 size: 126,250
+|total runtime|= 1.654783e-01 seconds
+|average runtime per process|= 4.141518e-02 seconds per processor
+|residual|=6.800220e+05
+|residualMax|=1.171728e+04
+|error|=6.635753e+03
+|errorMax|=8.564551e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [250]
+coords: 2,0 rank: 2 size: 51,250
+coords: 3,0 rank: 3 size: 51,250
+coords: 4,0 rank: 4 size: 54,250
+numprocs = 5
+dims=(5,1)
+coords: 0,0 rank: 0 size: 51,250
+coords: 1,0 rank: 1 size: 51,250
+|total runtime|= 2.354927e-01 seconds
+|average runtime per process|= 9.425111e-03 seconds per processor
+|residual|=6.800220e+05
+|residualMax|=1.171728e+04
+|error|=6.635753e+03
+|errorMax|=8.564551e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [250]
+coords: 1,0 rank: 1 size: 26,250
+coords: 2,0 rank: 2 size: 26,250
+coords: 3,0 rank: 3 size: 26,250
+coords: 4,0 rank: 4 size: 26,250
+coords: 5,0 rank: 5 size: 26,250
+coords: 6,0 rank: 6 size: 26,250
+coords: 7,0 rank: 7 size: 26,250
+coords: 8,0 rank: 8 size: 26,250
+coords: 9,0 rank: 9 size: 34,250
+numprocs = 10
+dims=(10,1)
+coords: 0,0 rank: 0 size: 26,250
+|total runtime|= 3.448349e-01 seconds
+|average runtime per process|= 3.452705e-03 seconds per processor
+|residual|=6.800220e+05
+|residualMax|=1.171728e+04
+|error|=6.635753e+03
+|errorMax|=8.564551e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [250]
+numprocs = 20
+dims=(20,1)
+coords: 6,0 rank: 6 size: 14,250
+coords: 7,0 rank: 7 size: 14,250
+coords: 8,0 rank: 8 size: 14,250
+coords: 9,0 rank: 9 size: 14,250
+coords: 10,0 rank: 10 size: 14,250
+coords: 11,0 rank: 11 size: 14,250
+coords: 12,0 rank: 12 size: 14,250
+coords: 13,0 rank: 13 size: 14,250
+coords: 14,0 rank: 14 size: 14,250
+coords: 15,0 rank: 15 size: 14,250
+coords: 16,0 rank: 16 size: 14,250
+coords: 17,0 rank: 17 size: 14,250
+coords: 18,0 rank: 18 size: 14,250
+coords: 19,0 rank: 19 size: 22,250
+coords: 0,0 rank: 0 size: 14,250
+coords: 1,0 rank: 1 size: 14,250
+coords: 2,0 rank: 2 size: 14,250
+coords: 3,0 rank: 3 size: 14,250
+coords: 4,0 rank: 4 size: 14,250
+coords: 5,0 rank: 5 size: 14,250
+|total runtime|= 6.116786e-01 seconds
+|average runtime per process|= 1.531200e-03 seconds per processor
+|residual|=6.800220e+05
+|residualMax|=1.171728e+04
+|error|=6.635753e+03
+|errorMax|=8.564551e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [250]
+numprocs = 40
+dims=(40,1)
+coords: 8,0 rank: 8 size: 8,250
+coords: 9,0 rank: 9 size: 8,250
+coords: 10,0 rank: 10 size: 8,250
+coords: 11,0 rank: 11 size: 8,250
+coords: 12,0 rank: 12 size: 8,250
+coords: 13,0 rank: 13 size: 8,250
+coords: 14,0 rank: 14 size: 8,250
+coords: 15,0 rank: 15 size: 8,250
+coords: 16,0 rank: 16 size: 8,250
+coords: 17,0 rank: 17 size: 8,250
+coords: 18,0 rank: 18 size: 8,250
+coords: 19,0 rank: 19 size: 8,250
+coords: 20,0 rank: 20 size: 8,250
+coords: 21,0 rank: 21 size: 8,250
+coords: 22,0 rank: 22 size: 8,250
+coords: 23,0 rank: 23 size: 8,250
+coords: 24,0 rank: 24 size: 8,250
+coords: 25,0 rank: 25 size: 8,250
+coords: 26,0 rank: 26 size: 8,250
+coords: 27,0 rank: 27 size: 8,250
+coords: 28,0 rank: 28 size: 8,250
+coords: 29,0 rank: 29 size: 8,250
+coords: 30,0 rank: 30 size: 8,250
+coords: 31,0 rank: 31 size: 8,250
+coords: 32,0 rank: 32 size: 8,250
+coords: 33,0 rank: 33 size: 8,250
+coords: 34,0 rank: 34 size: 8,250
+coords: 35,0 rank: 35 size: 8,250
+coords: 36,0 rank: 36 size: 8,250
+coords: 37,0 rank: 37 size: 8,250
+coords: 38,0 rank: 38 size: 8,250
+coords: 39,0 rank: 39 size: 16,250
+coords: 0,0 rank: 0 size: 8,250
+coords: 1,0 rank: 1 size: 8,250
+coords: 2,0 rank: 2 size: 8,250
+coords: 3,0 rank: 3 size: 8,250
+coords: 4,0 rank: 4 size: 8,250
+coords: 5,0 rank: 5 size: 8,250
+coords: 6,0 rank: 6 size: 8,250
+coords: 7,0 rank: 7 size: 8,250
+|total runtime|= 1.437537e+00 seconds
+|average runtime per process|= 9.005718e-04 seconds per processor
+|residual|=6.800220e+05
+|residualMax|=1.171728e+04
+|error|=6.635753e+03
+|errorMax|=8.564551e+01
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [1000]
+numprocs = 1
+dims=(1,1)
+coords: 0,0 rank: 0 size: 1000,1000
+|total runtime|= 3.165014e+00 seconds
+|average runtime per process|= 3.165014e+00 seconds per processor
+|residual|=2.939145e+07
+|residualMax|=2.531387e+05
+|error|=4.527687e+04
+|errorMax|=1.900075e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [1000]
+numprocs = 2
+dims=(2,1)
+coords: 0,0 rank: 0 size: 501,1000
+coords: 1,0 rank: 1 size: 501,1000
+|total runtime|= 3.535052e+00 seconds
+|average runtime per process|= 8.843436e-01 seconds per processor
+|residual|=2.939145e+07
+|residualMax|=2.531387e+05
+|error|=4.527687e+04
+|errorMax|=1.900075e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [1000]
+numprocs = 5
+dims=(5,1)
+coords: 0,0 rank: 0 size: 201,1000
+coords: 1,0 rank: 1 size: 201,1000
+coords: 2,0 rank: 2 size: 201,1000
+coords: 3,0 rank: 3 size: 201,1000
+coords: 4,0 rank: 4 size: 204,1000
+|total runtime|= 3.228868e+00 seconds
+|average runtime per process|= 1.293364e-01 seconds per processor
+|residual|=2.939145e+07
+|residualMax|=2.531387e+05
+|error|=4.527687e+04
+|errorMax|=1.900075e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [1000]
+numprocs = 10
+dims=(10,1)
+coords: 3,0 rank: 3 size: 101,1000
+coords: 4,0 rank: 4 size: 101,1000
+coords: 5,0 rank: 5 size: 101,1000
+coords: 6,0 rank: 6 size: 101,1000
+coords: 7,0 rank: 7 size: 101,1000
+coords: 8,0 rank: 8 size: 101,1000
+coords: 9,0 rank: 9 size: 109,1000
+coords: 0,0 rank: 0 size: 101,1000
+coords: 1,0 rank: 1 size: 101,1000
+coords: 2,0 rank: 2 size: 101,1000
+|total runtime|= 3.568578e+00 seconds
+|average runtime per process|= 3.574836e-02 seconds per processor
+|residual|=2.939145e+07
+|residualMax|=2.531387e+05
+|error|=4.527687e+04
+|errorMax|=1.900075e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [1000]
+numprocs = 20
+dims=(20,1)
+coords: 13,0 rank: 13 size: 51,1000
+coords: 15,0 rank: 15 size: 51,1000
+coords: 17,0 rank: 17 size: 51,1000
+coords: 19,0 rank: 19 size: 69,1000
+coords: 1,0 rank: 1 size: 51,1000
+coords: 3,0 rank: 3 size: 51,1000
+coords: 5,0 rank: 5 size: 51,1000
+coords: 7,0 rank: 7 size: 51,1000
+coords: 9,0 rank: 9 size: 51,1000
+coords: 11,0 rank: 11 size: 51,1000
+coords: 18,0 rank: 18 size: 51,1000
+coords: 2,0 rank: 2 size: 51,1000
+coords: 4,0 rank: 4 size: 51,1000
+coords: 6,0 rank: 6 size: 51,1000
+coords: 8,0 rank: 8 size: 51,1000
+coords: 10,0 rank: 10 size: 51,1000
+coords: 12,0 rank: 12 size: 51,1000
+coords: 0,0 rank: 0 size: 51,1000
+coords: 14,0 rank: 14 size: 51,1000
+coords: 16,0 rank: 16 size: 51,1000
+|total runtime|= 4.899826e+00 seconds
+|average runtime per process|= 1.224415e-02 seconds per processor
+|residual|=2.939145e+07
+|residualMax|=2.531387e+05
+|error|=4.527687e+04
+|errorMax|=1.900075e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [1000]
+numprocs = 40
+dims=(40,1)
+coords: 10,0 rank: 10 size: 26,1000
+coords: 11,0 rank: 11 size: 26,1000
+coords: 12,0 rank: 12 size: 26,1000
+coords: 14,0 rank: 14 size: 26,1000
+coords: 15,0 rank: 15 size: 26,1000
+coords: 16,0 rank: 16 size: 26,1000
+coords: 18,0 rank: 18 size: 26,1000
+coords: 19,0 rank: 19 size: 26,1000
+coords: 20,0 rank: 20 size: 26,1000
+coords: 22,0 rank: 22 size: 26,1000
+coords: 23,0 rank: 23 size: 26,1000
+coords: 24,0 rank: 24 size: 26,1000
+coords: 26,0 rank: 26 size: 26,1000
+coords: 27,0 rank: 27 size: 26,1000
+coords: 28,0 rank: 28 size: 26,1000
+coords: 30,0 rank: 30 size: 26,1000
+coords: 31,0 rank: 31 size: 26,1000
+coords: 32,0 rank: 32 size: 26,1000
+coords: 34,0 rank: 34 size: 26,1000
+coords: 35,0 rank: 35 size: 26,1000
+coords: 36,0 rank: 36 size: 26,1000
+coords: 38,0 rank: 38 size: 26,1000
+coords: 39,0 rank: 39 size: 64,1000
+coords: 0,0 rank: 0 size: 26,1000
+coords: 8,0 rank: 8 size: 26,1000
+coords: 7,0 rank: 7 size: 26,1000
+coords: 2,0 rank: 2 size: 26,1000
+coords: 3,0 rank: 3 size: 26,1000
+coords: 4,0 rank: 4 size: 26,1000
+coords: 6,0 rank: 6 size: 26,1000
+coords: 21,0 rank: 21 size: 26,1000
+coords: 25,0 rank: 25 size: 26,1000
+coords: 29,0 rank: 29 size: 26,1000
+coords: 33,0 rank: 33 size: 26,1000
+coords: 37,0 rank: 37 size: 26,1000
+coords: 1,0 rank: 1 size: 26,1000
+coords: 5,0 rank: 5 size: 26,1000
+coords: 9,0 rank: 9 size: 26,1000
+coords: 13,0 rank: 13 size: 26,1000
+coords: 17,0 rank: 17 size: 26,1000
+|total runtime|= 1.178691e+01 seconds
+|average runtime per process|= 7.378814e-03 seconds per processor
+|residual|=2.939145e+07
+|residualMax|=2.531387e+05
+|error|=4.527687e+04
+|errorMax|=1.900075e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [4000]
+numprocs = 1
+dims=(1,1)
+coords: 0,0 rank: 0 size: 4000,4000
+|total runtime|= 5.586319e+01 seconds
+|average runtime per process|= 5.586319e+01 seconds per processor
+|residual|=9.592535e+08
+|residualMax|=4.130151e+06
+|error|=2.051889e+05
+|errorMax|=2.419050e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [4000]
+numprocs = 2
+dims=(2,1)
+coords: 1,0 rank: 1 size: 2001,4000
+coords: 0,0 rank: 0 size: 2001,4000
+|total runtime|= 6.107451e+01 seconds
+|average runtime per process|= 1.527725e+01 seconds per processor
+|residual|=9.592535e+08
+|residualMax|=4.130151e+06
+|error|=2.051889e+05
+|errorMax|=2.419050e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [4000]
+numprocs = 5
+dims=(5,1)
+coords: 2,0 rank: 2 size: 801,4000
+coords: 3,0 rank: 3 size: 801,4000
+coords: 4,0 rank: 4 size: 804,4000
+coords: 0,0 rank: 0 size: 801,4000
+coords: 1,0 rank: 1 size: 801,4000
+|total runtime|= 6.285700e+01 seconds
+|average runtime per process|= 2.517239e+00 seconds per processor
+|residual|=9.592535e+08
+|residualMax|=4.130151e+06
+|error|=2.051889e+05
+|errorMax|=2.419050e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [4000]
+numprocs = 10
+dims=(10,1)
+coords: 3,0 rank: 3 size: 401,4000
+coords: 4,0 rank: 4 size: 401,4000
+coords: 5,0 rank: 5 size: 401,4000
+coords: 6,0 rank: 6 size: 401,4000
+coords: 7,0 rank: 7 size: 401,4000
+coords: 8,0 rank: 8 size: 401,4000
+coords: 9,0 rank: 9 size: 409,4000
+coords: 0,0 rank: 0 size: 401,4000
+coords: 1,0 rank: 1 size: 401,4000
+coords: 2,0 rank: 2 size: 401,4000
+|total runtime|= 7.281603e+01 seconds
+|average runtime per process|= 7.291203e-01 seconds per processor
+|residual|=9.592535e+08
+|residualMax|=4.130151e+06
+|error|=2.051889e+05
+|errorMax|=2.419050e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [4000]
+numprocs = 20
+dims=(20,1)
+coords: 10,0 rank: 10 size: 201,4000
+coords: 12,0 rank: 12 size: 201,4000
+coords: 14,0 rank: 14 size: 201,4000
+coords: 16,0 rank: 16 size: 201,4000
+coords: 18,0 rank: 18 size: 201,4000
+coords: 0,0 rank: 0 size: 201,4000
+coords: 2,0 rank: 2 size: 201,4000
+coords: 4,0 rank: 4 size: 201,4000
+coords: 6,0 rank: 6 size: 201,4000
+coords: 8,0 rank: 8 size: 201,4000
+coords: 5,0 rank: 5 size: 201,4000
+coords: 7,0 rank: 7 size: 201,4000
+coords: 9,0 rank: 9 size: 201,4000
+coords: 11,0 rank: 11 size: 201,4000
+coords: 13,0 rank: 13 size: 201,4000
+coords: 15,0 rank: 15 size: 201,4000
+coords: 17,0 rank: 17 size: 201,4000
+coords: 19,0 rank: 19 size: 219,4000
+coords: 1,0 rank: 1 size: 201,4000
+coords: 3,0 rank: 3 size: 201,4000
+|total runtime|= 9.134383e+01 seconds
+|average runtime per process|= 2.281514e-01 seconds per processor
+|residual|=9.592535e+08
+|residualMax|=4.130151e+06
+|error|=2.051889e+05
+|errorMax|=2.419050e+02
+|++++++++++++++++++++++++++++++++++++++++++++|
+|++++++++++++++++++++++++++++++++++++++++++++|
+Start 1-D Solver for [1000] iterations with resolution of [4000]
+numprocs = 40
+dims=(40,1)
+coords: 9,0 rank: 9 size: 101,4000
+coords: 10,0 rank: 10 size: 101,4000
+coords: 11,0 rank: 11 size: 101,4000
+coords: 12,0 rank: 12 size: 101,4000
+coords: 13,0 rank: 13 size: 101,4000
+coords: 14,0 rank: 14 size: 101,4000
+coords: 15,0 rank: 15 size: 101,4000
+coords: 16,0 rank: 16 size: 101,4000
+coords: 17,0 rank: 17 size: 101,4000
+coords: 18,0 rank: 18 size: 101,4000
+coords: 19,0 rank: 19 size: 101,4000
+coords: 20,0 rank: 20 size: 101,4000
+coords: 21,0 rank: 21 size: 101,4000
+coords: 22,0 rank: 22 size: 101,4000
+coords: 23,0 rank: 23 size: 101,4000
+coords: 24,0 rank: 24 size: 101,4000
+coords: 25,0 rank: 25 size: 101,4000
+coords: 26,0 rank: 26 size: 101,4000
+coords: 27,0 rank: 27 size: 101,4000
+coords: 28,0 rank: 28 size: 101,4000
+coords: 29,0 rank: 29 size: 101,4000
+coords: 30,0 rank: 30 size: 101,4000
+coords: 31,0 rank: 31 size: 101,4000
+coords: 32,0 rank: 32 size: 101,4000
+coords: 33,0 rank: 33 size: 101,4000
+coords: 34,0 rank: 34 size: 101,4000
+coords: 35,0 rank: 35 size: 101,4000
+coords: 36,0 rank: 36 size: 101,4000
+coords: 37,0 rank: 37 size: 101,4000
+coords: 38,0 rank: 38 size: 101,4000
+coords: 39,0 rank: 39 size: 139,4000
+coords: 0,0 rank: 0 size: 101,4000
+coords: 1,0 rank: 1 size: 101,4000
+coords: 2,0 rank: 2 size: 101,4000
+coords: 3,0 rank: 3 size: 101,4000
+coords: 4,0 rank: 4 size: 101,4000
+coords: 5,0 rank: 5 size: 101,4000
+coords: 6,0 rank: 6 size: 101,4000
+coords: 7,0 rank: 7 size: 101,4000
+coords: 8,0 rank: 8 size: 101,4000
+|total runtime|= 1.678341e+02 seconds
+|average runtime per process|= 1.049798e-01 seconds per processor
+|residual|=9.592535e+08
+|residualMax|=4.130151e+06
+|error|=2.051889e+05
+|errorMax|=2.419050e+02
+|++++++++++++++++++++++++++++++++++++++++++++|

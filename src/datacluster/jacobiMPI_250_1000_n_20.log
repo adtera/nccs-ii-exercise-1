@@ -1,32 +1,11 @@
 |++++++++++++++++++++++++++++++++++++++++++++|
-Start Solver for [1000] iterations with resolution of [250]
+Start 1-D Solver for [1000] iterations with resolution of [250]
 numprocs = 20
 dims=(20,1)
-coords=(0,0)
-coords: 0,0 rank: 0 size: 14,250
-coords: 18,0 rank: 18 size: 14,250
-coords: 2,0 rank: 2 size: 14,250
-coords: 4,0 rank: 4 size: 14,250
-coords: 6,0 rank: 6 size: 14,250
-coords: 8,0 rank: 8 size: 14,250
-coords: 10,0 rank: 10 size: 14,250
-coords: 12,0 rank: 12 size: 14,250
-coords: 14,0 rank: 14 size: 14,250
-coords: 16,0 rank: 16 size: 14,250
-coords: 5,0 rank: 5 size: 14,250
-coords: 7,0 rank: 7 size: 14,250
-coords: 9,0 rank: 9 size: 14,250
-coords: 11,0 rank: 11 size: 14,250
-coords: 13,0 rank: 13 size: 14,250
-coords: 15,0 rank: 15 size: 14,250
-coords: 17,0 rank: 17 size: 14,250
-coords: 19,0 rank: 19 size: 22,250
-coords: 1,0 rank: 1 size: 14,250
-coords: 3,0 rank: 3 size: 14,250
-|total runtime|= 2.131149e-02 seconds
-|average runtime per process|= 1.065575e-03 seconds per processor
-|residual|=4.926419e+04
-|residualMax|=4.227185e+03
-|error|=3.118039e+02
-|errorMax|=2.099306e+01
+|total runtime|= 7.003430e-01 seconds
+|average runtime per process|= 1.752561e-03 seconds per processor
+|residual|=6.800220e+05
+|residualMax|=1.171728e+04
+|error|=6.635753e+03
+|errorMax|=8.564551e+01
 |++++++++++++++++++++++++++++++++++++++++++++|
